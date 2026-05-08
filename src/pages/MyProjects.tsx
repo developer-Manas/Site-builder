@@ -35,6 +35,28 @@ const MyProjects = () => {
               <button onClick={() => navigate('/')} className='flex items-center text-white gap-2 px-3 sm:px-6 py-1 sm:py-2 rounded bg-linear-to-br from-indigo-500 to-indigo-600 hover:opacity-90 active:scale-95 transition-all'><PlusIcon size={18} />Create New</button>
             </div>
 
+            <div className="flex flex-wrap gap-3.5">
+              {projects.map((project)=>(
+                <div key={project.id} className='relative group w-72 max-sm:max-auto cursor-pointer bg-gray-900/60 border border-gray-700 rounded-lg overflow-hidden shadow-md group hover:shadow-indigo-700/30 hover:border-indigo-800/80 transition-all duration-300'>
+                  {/* Desktop like mini preview */}
+                  <div className="relative w-full h-40 bg-gray-900 overflow-hidden border-b border-gray-800">
+                    {project.current_code ? (
+                      <iframe
+                      srcDoc={project.current_code}
+                      className='absolute top-0 left-0 w-[1200px] h-[800px] origin-top-left pointer-events-none'
+                      sandbox='allow-scripts allow-same-origin'
+                      style={{ transform: 'scale(0.25)'}}/>
+                    )
+                  : (
+                    <div className='flex items-center justify-center h-full text-gray-500'>
+                      <p>No Preview</p>
+                    </div>
+                  )}
+                  </div>
+
+                </div>
+              ))}
+            </div>
 
           </div>
         ) : (
