@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import type { Project } from '../types';
 import { iframeScript } from '../assets/assets';
 import { Phone } from 'lucide-react';
@@ -25,6 +25,17 @@ const ProjectsPreview = forwardRef<ProjectPreviewRef, ProjectPreviewProps>(({pro
         tablet: 'w-[768px]',
         desktop: 'w-full'    
     }
+
+
+    useImperativeHandle(ref, () => ({
+      getCode: () => {
+        const doc = iframeRef.current?.contentDocument;
+        if(!doc) return undefined;
+
+        // 1. Remove our selection class / attributes / outline from all elements
+      }
+    }))
+
 
     useEffect(() => {
       const handleMessage = (event: MessageEvent)=>{
